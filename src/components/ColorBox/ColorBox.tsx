@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { Color } from '../model/color'
+import { Color } from '../../model/color'
 
 export const getColorProperty = ({ type, components }: Color) =>
   `${type.toLowerCase()}(${components.join(',')})`

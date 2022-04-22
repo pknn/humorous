@@ -1,5 +1,5 @@
-import { ColorBox } from './components/ColorBox'
 import { Header } from './components/Header'
+import { ColorBox } from './components/ColorBox'
 
 const App = () => (
   <div className="p-2 bg-neutral-200 h-screen w-screen">

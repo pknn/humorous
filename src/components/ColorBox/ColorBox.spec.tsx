@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 import { shallow } from 'enzyme'
-import { Color } from '../model/color'
+import { Color } from '../../model/color'
 import { ColorBox, getColorProperty } from './ColorBox'
 
 const setup = (color: Color) => shallow(<ColorBox color={color} />)
