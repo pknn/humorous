@@ -1,34 +1,24 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 import { Color } from '../../model/color'
 
-export const useColors = (): [Color[], string, () => void] => {
-  const [status, setStatus] = useState('idle')
-  const [colors, setColors] = useState<Color[]>([
-    {
-      type: 'RGB',
-      components: ['123', '120', '99'],
-    },
-    {
-      type: 'RGB',
-      components: ['178', '25', '12'],
-    },
-    {
-      type: 'HSL',
-      components: ['178', '50%', '99%'],
-    },
-    {
-      type: 'HSL',
-      components: ['275', '14%', '30%'],
-    },
-    {
-      type: 'RGB',
-      components: ['40', '77', '34'],
-    },
-  ])
+const colorApiEndpoint = `${import.meta.env.VITE_APP_API_URL}/colors`
+
+export const useColors = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [colors, setColors] = useState<Color[]>([])
+
+  useEffect(() => {
+    refresh()
+  }, [])
 
   const refresh = () => {
-    return
+    setIsLoading(true)
+    axios.get(colorApiEndpoint).then((response) => {
+      setColors(response.data as Color[])
+      setIsLoading(false)
+    })
   }
 
-  return [colors, status, refresh]
+  return { colors, isLoading, refresh }
 }
