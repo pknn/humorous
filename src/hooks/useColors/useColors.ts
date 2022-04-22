@@ -6,23 +6,23 @@ export const useColors = (): [Color[], string, () => void] => {
   const [colors, setColors] = useState<Color[]>([
     {
       type: 'RGB',
-      components: [123, 120, 99],
+      components: ['123', '120', '99'],
     },
     {
       type: 'RGB',
-      components: [178, 25, 12],
+      components: ['178', '25', '12'],
     },
     {
       type: 'HSL',
-      components: [178, 50, 99],
+      components: ['178', '50%', '99%'],
     },
     {
       type: 'HSL',
-      components: [275, 14, 30],
+      components: ['275', '14%', '30%'],
     },
     {
       type: 'RGB',
-      components: [40, 77, 34],
+      components: ['40', '77', '34'],
     },
   ])
 
