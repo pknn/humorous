@@ -1,21 +1,7 @@
+export type ColorValue = number
 export type ColorType = 'RGB' | 'HSL'
 
-interface Color {
+export interface Color {
   type: ColorType
+  components: ColorValue[]
 }
-
-export type ColorValue = number
-
-export interface RGB extends Color {
-  red: ColorValue
-  green: ColorValue
-  blue: ColorValue
-}
-
-export interface HSL extends Color {
-  hue: ColorValue
-  saturation: ColorValue
-  lightness: ColorValue
-}
-
-export type AvailableColor = RGB | HSL

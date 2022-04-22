@@ -1,38 +1,28 @@
 import { useState } from 'react'
-import { AvailableColor } from '../../model/color'
+import { Color } from '../../model/color'
 
-export const useColors = (): [AvailableColor[], string, () => void] => {
+export const useColors = (): [Color[], string, () => void] => {
   const [status, setStatus] = useState('idle')
-  const [colors, setColors] = useState<AvailableColor[]>([
+  const [colors, setColors] = useState<Color[]>([
     {
       type: 'RGB',
-      red: 123,
-      green: 120,
-      blue: 99,
+      components: [123, 120, 99],
     },
     {
       type: 'RGB',
-      red: 178,
-      green: 25,
-      blue: 12,
+      components: [178, 25, 12],
     },
     {
       type: 'HSL',
-      hue: 123,
-      saturation: 50,
-      lightness: 99,
+      components: [178, 50, 99],
     },
     {
       type: 'HSL',
-      hue: 275,
-      saturation: 14,
-      lightness: 30,
+      components: [275, 14, 30],
     },
     {
       type: 'RGB',
-      red: 40,
-      green: 77,
-      blue: 34,
+      components: [40, 77, 34],
     },
   ])
 
