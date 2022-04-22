@@ -14,10 +14,12 @@ export const useColors = () => {
 
   const refresh = () => {
     setIsLoading(true)
-    axios.get(colorApiEndpoint).then((response) => {
-      setColors(response.data as Color[])
-      setIsLoading(false)
-    })
+    setTimeout(() => {
+      axios.get(colorApiEndpoint).then((response) => {
+        setColors(response.data as Color[])
+        setIsLoading(false)
+      })
+    }, 5000)
   }
 
   return { colors, isLoading, refresh }

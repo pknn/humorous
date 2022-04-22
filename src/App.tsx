@@ -6,12 +6,10 @@ const App = () => {
   const { colors, isLoading, refresh } = useColors()
 
   return (
-    colors && (
-      <div className="p-2 bg-neutral-200 h-screen flex flex-col">
-        <Header />
-        <ColorBoxes colors={colors} />
-      </div>
-    )
+    <div className="p-2 bg-neutral-200 h-screen flex flex-col">
+      <Header />
+      <ColorBoxes isLoading={isLoading} colors={colors} />
+    </div>
   )
 }
 
