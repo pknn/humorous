@@ -1,22 +1,34 @@
 import { act, renderHook } from '@testing-library/react-hooks'
-import { describe, it, expect } from 'vitest'
+import axios from 'axios'
+import { describe, it, expect, vi } from 'vitest'
 import { useColors } from './useColors'
 
+const mockAxiosGet = vi.spyOn(axios, 'get')
+
 describe('useColors', () => {
-  it('should return correctly', () => {
-    const { result } = renderHook(() => useColors())
-    const { colors, isLoading, refresh } = result.current
-
-    expect(colors).toHaveLength(5)
-    expect(colors.every((color) => ['RGB', 'HSL'].includes(color.type)))
-
-    expect(isLoading).toBeTypeOf('boolean')
-
-    expect(refresh).toBeTypeOf('function')
-    act(() => {
-      refresh()
+  it('should return correctly', async () => {
+    mockAxiosGet.mockResolvedValue({
+      data: [{ type: 'RGB', components: ['12', '13', '14'] }],
     })
 
-    expect(colors.every((color) => ['RGB', 'HSL'].includes(color.type)))
+    const { result, waitForNextUpdate } = renderHook(() => useColors())
+
+    expect(result.current.isLoading).toBeTruthy()
+    expect(result.current.colors).toHaveLength(0)
+
+    await waitForNextUpdate()
+
+    expect(result.current.isLoading).toBeFalsy()
+    expect(result.current.colors).toHaveLength(1)
+
+    act(() => {
+      result.current.refresh()
+    })
+
+    expect(result.current.isLoading).toBeTruthy()
+
+    await waitForNextUpdate()
+    expect(result.current.isLoading).toBeFalsy()
+    expect(result.current.colors).toHaveLength(1)
   })
 })
