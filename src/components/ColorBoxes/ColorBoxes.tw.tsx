@@ -6,5 +6,4 @@ export const Container = tw.div`
   flex-wrap
   h-full
   w-full
-  mt-8
 `
