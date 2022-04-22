@@ -6,7 +6,7 @@ const App = () => {
   const { colors, isLoading, refresh } = useColors()
 
   return (
-    <div className="p-2 bg-neutral-200 h-screen flex flex-col">
+    <div className="p-2 bg-neutral-100 h-screen flex flex-col">
       <Header />
       <ColorBoxes isLoading={isLoading} colors={colors} />
     </div>

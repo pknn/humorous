@@ -1,10 +1,19 @@
 import { Color } from '../../model/color'
-import { ColorBoxes } from './ColorBoxes'
+import { ColorBox } from '../ColorBox/ColorBox'
+import { Container } from './ColorBoxes.tw'
 
 export const PlaceHolder = () => {
-  const colors: Color[] = new Array(5)
-    .fill(0)
-    .map(() => ({ type: 'RGB', components: ['163', '163', '163'] }))
+  const colorValues = [229, 212, 163, 115, 82]
+  const colors: Color[] = colorValues.map((value) => ({
+    type: 'RGB',
+    components: new Array(3).fill(value),
+  }))
 
-  return <ColorBoxes colors={colors} />
+  return (
+    <Container className="animate-pulse">
+      {colors.map((color) => (
+        <ColorBox color={color} key={JSON.stringify(color)} />
+      ))}
+    </Container>
+  )
 }
