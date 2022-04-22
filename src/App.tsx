@@ -1,11 +1,10 @@
 import { Header } from './components/Header'
-import { ColorBox } from './components/ColorBox'
+import { ColorBoxes } from './components/ColorBoxes'
 
 const App = () => (
-  <div className="p-2 bg-neutral-200 h-screen w-screen">
+  <div className="p-2 bg-neutral-200 h-screen flex flex-col">
     <Header />
-    <ColorBox color={{ type: 'HSL', components: ['12', '20%', '60%'] }} />
-    <ColorBox color={{ type: 'RGB', components: ['233', '245', '182'] }} />
+    <ColorBoxes />
   </div>
 )
 

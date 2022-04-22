@@ -1,5 +1,6 @@
 import { useMemo } from 'react'
 import { Color } from '../../model/color'
+import { Box } from './ColorBox.tw'
 
 export const getColorProperty = ({ type, components }: Color) =>
   `${type.toLowerCase()}(${components.join(',')})`
@@ -11,7 +12,5 @@ interface ColorBoxProps {
 export const ColorBox = ({ color }: ColorBoxProps) => {
   const colorProperty = useMemo(() => getColorProperty(color), [color])
 
-  return (
-    <div style={{ background: colorProperty }} className="w-full h-full"></div>
-  )
+  return <Box style={{ background: colorProperty }} />
 }
