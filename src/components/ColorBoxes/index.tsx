@@ -1,11 +1,26 @@
+import { useColors } from '../../hooks/useColors/useColors'
 import { Color } from '../../model/color'
+import { Button } from '../Button.tw'
 import { ColorBoxes as InnerColorBoxes } from './ColorBoxes'
 import { PlaceHolder } from './PlaceHolder'
 
-interface Props {
-  isLoading: boolean
-  colors: Color[] | null
-}
+export const ColorBoxes = () => {
+  const { isLoading, colors, refresh } = useColors()
 
-export const ColorBoxes = ({ isLoading, colors }: Props) =>
-  isLoading ? <PlaceHolder /> : <InnerColorBoxes colors={colors as Color[]} />
+  const handleClick = () => {
+    refresh()
+  }
+
+  return (
+    <div className="h-full flex flex-col">
+      <div className="my-4 text-center">
+        <Button onClick={handleClick}>Generate</Button>
+      </div>
+      {isLoading ? (
+        <PlaceHolder />
+      ) : (
+        <InnerColorBoxes colors={colors as Color[]} />
+      )}
+    </div>
+  )
+}
